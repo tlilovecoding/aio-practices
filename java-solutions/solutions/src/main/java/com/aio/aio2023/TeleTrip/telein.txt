@@ -1,2 +1,2 @@
-7
-LLRRRLL
+3
+TTT
