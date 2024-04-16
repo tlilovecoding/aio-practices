@@ -1,15 +1,18 @@
-package com.aio.aio2023.TeleTrip;
+package com.aio.aio2023.DistinctosRaffle;
 
 import java.io.*;
 import java.util.Arrays;
 
 class Solution {
 
-    /* N is the number of instructions. */
+    /* N is the number of competitors. */
     private static int N;
 
-    /* instructions contains the sequence of instructions. */
-    private static char instructions[] = new char[100005];
+    /* Competitors all submit a number between 1 and K inclusive. */
+    private static int K;
+
+    /* numbers contains the submitted numbers. */
+    private static int numbers[] = new int[100005];
 
     private static int answer;
 
@@ -36,52 +39,49 @@ class Solution {
         return ans.toString();
     }
 
-    private static void calculate() {
-        int[] arr = new int[2 * N + 1];
-        Arrays.fill(arr, 1);
-        arr[N] = 0;
-        int cur = N;
-        for (char c : instructions) {
-            if (c == 'T') {
-                cur = N;
-            }
-            if (c == 'L') {
-                arr[--cur] = 0;
-            }
-            if (c == 'R') {
-                arr[++cur] = 0;
-            }
-        }
+    private static int getWiner() {
+        int[] votes = new int[K + 1];
+        Arrays.fill(votes, -1);
+        for (int i : numbers) {
+            if (votes[i] == -1) {
+                votes[i] = 1;
+            } else if (votes[i] == 1) {
+                votes[i] = 0;
+            } else if (votes[i] == 0) {
 
-        int cnt = 0;
-        for(int i:arr){
-            if(i==0){
-                cnt++;
             }
         }
-        answer = cnt;
+        for(int i=0;i<K+1;i++){
+            if(votes[i]==1){
+                return i;
+            }
+        }
+        return -1;
     }
 
     public static void main(String[] args) throws IOException {
         /* Open the input and output files. */
-        // BufferedReader input_file = new BufferedReader(new FileReader(
-        // "telein.txt"));
-        // BufferedWriter output_file = new BufferedWriter(new FileWriter(
-        // "teleout.txt"));
-
         BufferedReader input_file = new BufferedReader(new FileReader(
-                "C:/Ting/Study/aio-practices/java-solutions/solutions/src/main/java/com/aio/aio2023/TeleTrip/telein.txt"));
+                "C:/Ting/Study/aio-practices/java-solutions/solutions/src/main/java/com/aio/aio2023/distinctosraffle/rafflein.txt"));
         BufferedWriter output_file = new BufferedWriter(new FileWriter(
-                "C:/Ting/Study/aio-practices/java-solutions/solutions/src/main/java/com/aio/aio2023/TeleTrip/teleout.txt"));
+                "C:/Ting/Study/aio-practices/java-solutions/solutions/src/main/java/com/aio/aio2023/distinctosraffle/raffleout.txt"));
 
-        /* Read the value of N and the instructions from the input file. */
+        /*
+         * Read the values of N, K and the submitted numbers from the input
+         * file.
+         */
         N = Integer.parseInt(readToken(input_file));
-        instructions = readToken(input_file).toCharArray();
-        calculate();
+        K = Integer.parseInt(readToken(input_file));
+        for (int i = 0; i < N; i++) {
+            numbers[i] = Integer.parseInt(readToken(input_file));
+        }
+
+        answer = getWiner();
+
         /*
          * TODO: This is where you should compute your solution. Store the
-         * number of different farmhouses that you visit into the variable
-         * answer.
+         * winning number, or -1 if there is no winning number, into the
+         * variable answer.
          */
 
         /* Write the answer to the output file. */

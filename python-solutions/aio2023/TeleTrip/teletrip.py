@@ -25,10 +25,26 @@ output_file = open("teleout.txt", "w")
 N = int(input_file.readline().strip())
 instructions = input_file.readline().strip()
 
+def calculate():
+    arr = [1] * (2 * N + 1)
+    arr[N] = 0
+    cur = N
+    for c in instructions:
+        if c == 'T':
+            cur = N
+        elif c == 'L':
+            cur -= 1
+            arr[cur] = 0
+        elif c == 'R':
+            cur += 1
+            arr[cur] = 0
+
+    return sum(1 for i in arr if i == 0)
+
 # TODO: This is where you should compute your solution. Store the number of
 # different farmhouses that you visit into the variable answer.
 
-answer = None
+answer = calculate()
 
 # Write the answer to the output file.
 output_file.write("%d\n" % (answer))
