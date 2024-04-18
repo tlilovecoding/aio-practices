@@ -21,8 +21,8 @@ K = None
 numbers = []
 
 # Open the input and output files.
-input_file = open("D:/Serena/Programming/aio-practices/aio-practices/python-solutions/aio2023/raffle/rafflein.txt", "r")
-output_file = open("D:/Serena/Programming/aio-practices/aio-practices/python-solutions/aio2023/raffle/raffleout.txt", "w")
+input_file = open("D:/Serena/Programming/aio-practices/python-solutions/aio2023/raffle/rafflein.txt", "r")
+output_file = open("D:/Serena/Programming/aio-practices/python-solutions/aio2023/raffle/raffleout.txt", "w")
 
 # Read the values of N, K and the submitted numbers from the input file.
 input_line = input_file.readline().strip()
