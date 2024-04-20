@@ -1,5 +1,5 @@
-input_file = open("D:/Serena/Programming/aio-practices/aio-practices/python-solutions/aio2020/levelground/groundin.txt", "r")
-output_file = open("D:/Serena/Programming/aio-practices/aio-practices/python-solutions/aio2020/levelground/groundout.txt", "w")
+input_file = open("D:/Serena/Programming/aio-practices/aio-practices/python-solutions/aio2022/levelground/groundin.txt", "r")
+output_file = open("D:/Serena/Programming/aio-practices/aio-practices/python-solutions/aio2022/levelground/groundout.txt", "w")
 
 N = int(input_file.readline().strip())
 altitudes = list(map(int, input_file.readline().strip().split()))
