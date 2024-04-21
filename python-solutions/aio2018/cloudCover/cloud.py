@@ -1,20 +1,17 @@
 input_file = open("D:/Serena/Programming/aio-practices/aio-practices/python-solutions/aio2018/cloudcover/cloudin.txt", "r")
 output_file = open("D:/Serena/Programming/aio-practices/aio-practices/python-solutions/aio2018/cloudcover/cloudout.txt", "w")
 N, K = map(int, input_file.readline().split())
-clouds = [0] * (N - 1)
-def cloudCover():
-    currSum = 0
-    for i in range(K - 1):
-        currSum += clouds[i]
-    maxSum = currSum
-    for i in range(K-1, N):
-        currSum -= clouds[l]
-        currSum += clouds[r]
-        maxSum = max(currSum, maxSum)
-        l += 1
-        r += 1
-    return maxSum
+clouds = [int(input_file.readline()) for _ in range(N - 1)]  # Read N-1 cloud cover values
 
-ans = cloudCover()
-output_file.write(str(ans))
+def cloudCover():
+    curr = sum(clouds[:K-1])  # Sum of the first K elements
+    ans = float('inf')
+    for i in range(N-K):  # Adjusted loop range
+        curr += clouds[i + K - 1]
+        ans = min(curr, ans)
+        curr -= clouds[i]
+    return ans
+anz = cloudCover()
+print(anz)
+output_file.write(str(anz))
 output_file.close()
