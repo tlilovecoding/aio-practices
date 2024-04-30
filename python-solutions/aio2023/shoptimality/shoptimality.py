@@ -20,7 +20,7 @@ S = list(map(int, input_line.split()))
 input_line = input_file.readline().strip()
 P = list(map(int, input_line.split()))
 
-def shoptimality():
+def shoptim ality():
     pass
     
 input_file.close()

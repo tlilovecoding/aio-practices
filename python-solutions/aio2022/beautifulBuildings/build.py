@@ -19,7 +19,7 @@ input_line = input_file.readline().strip()
 H = list(map(int, input_line.split()))
 
 # TODO:
-def beautifulBuildings():
+de f beautifulBuildings():
     maxDiff = 0
     #find maxx difference, then take the midle of it
     for i in range(1,N-1):
