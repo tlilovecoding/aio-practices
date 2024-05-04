@@ -19,11 +19,24 @@ input_line = input_file.readline().strip()
 H = list(map(int, input_line.split()))
 
 # TODO:
-de f beautifulBuildings():
-    maxDiff = 0
-    #find maxx difference, then take the midle of it
-    for i in range(1,N-1):
-        pass
+def beautifulBuildings():
+    if len(H) == 2:
+        return 0    
+    differences = [0]*(N-1)
+    ugly = 0
+    for i in range(N-1):
+        differences[i] = abs(H[i+1]-H[i])
+        ugly+=differences[i]
+    currUgly = ugly
+    for x in range(N):
+        if x == 0:
+            currUgly= min(currUgly, ugly-differences[x])
+        elif x == N-1:
+            currUgly = min(currUgly, ugly - differences[x - 1])
+        else:
+            currUgly = min(currUgly, ugly-differences[x]-differences[x-1]+abs(H[x-1]-H[x+1]))
+    return currUgly
+answer = beautifulBuildings()
 output_file.write("%d\n" % (answer))
 
 input_file.close()
