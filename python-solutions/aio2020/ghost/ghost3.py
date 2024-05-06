@@ -15,28 +15,26 @@ for _ in range(n):
     seconds.append(s)
 
 def get_max():
-    max_val = 1
-    encountered = [False] * len(meters)
-    for i in range(len(meters)):
-        if encountered[i]:
+    visited = [False] * len(meters)
+    left = 0
+    max_val = 0
+    while left < len(meters):
+        if visited[left]:
+            left += 1
             continue
         cnt = 1
-        cur_meter = meters[i]
-        cur_sec = seconds[i]
-        for j in range(i + 1, len(meters)):
-            if encountered[j]:
+        right = left + 1
+        visited[left] = True
+        while right < len(meters):
+            if visited[right]:
+                right += 1
                 continue
-            if meters[j] == cur_meter and seconds[j] == cur_sec:
-                encountered[j] = True
+            if (meters[right] - meters[left]) * k == seconds[right] - seconds[left]:
                 cnt += 1
-                continue
-            if (meters[j] - cur_meter) * k == (seconds[j] - cur_sec):
-                encountered[j] = True
-                cnt += 1
-                cur_meter = meters[j]
-                cur_sec = seconds[j]
-                continue
+                visited[right] = True
+            right += 1
         max_val = max(max_val, cnt)
+        left += 1
     return max_val
 
 
