@@ -16,7 +16,7 @@ for _ in range(n):
     seconds.append(s)
 
 for i in range(n):
-    key = k * meters[i] - seconds[i]
+    key = k * meters[i] - seconds[i] # when start with any ghost, a further ghost if can be met, it always met this condition
     if key in count:
         count[key] += 1
     else:
