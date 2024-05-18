@@ -1,4 +1,4 @@
-with open("D:/Serena/Programming/aio-practices/aio-practices/python-solutions/aio2019/monks/monksin.txt", "r") as input_file:
+with open("monksin.txt", "r") as input_file:
     N = int(input_file.readline().strip())
     monks = [0]*N
     for i in range(N):
@@ -28,5 +28,5 @@ for x in range(M):
     if r<l:
         break
 ans = N-r+l-1
-with open("D:/Serena/Programming/aio-practices/aio-practices/python-solutions/aio2019/monks/monksout.txt", "w") as output_file:
+with open("monksout.txt", "w") as output_file:
     output_file.write(str(ans))
