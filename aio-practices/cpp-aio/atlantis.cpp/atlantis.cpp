@@ -1,33 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
-int atlantis[1000000];
+
+int blocks[1000000];
 int N;
-int main(){
-    ifstream input ("atlanin.txt");
-    ofstream output ("atlanout.txt");
-    input>>N;
-    for(int i = 0; i<N; i++){
-        input>>atlantis[i];
+
+int main() {
+    ifstream input("atlanin.txt");
+    ofstream output("atlanout.txt");
+    input >> N;
+    
+    for (int i = 0; i < N; i++) {
+        input >> blocks[i];
     }
-    if(N<3){
-        output<<0;
+    if (N < 3) {
+        output << 0;
         return 0;
     }
-    int ptr = 0;
+    vector<int> highestFromLeft(N), highestFromRight(N);
+    highestFromLeft[0] = blocks[0];
+    for (int i = 1; i < N; i++) {
+        highestFromLeft[i] = max(blocks[i], highestFromLeft[i - 1]);
+    }
+    for(int i = 0; i < N; i++){
+        cout<<highestFromLeft[i]<<" ";
+    }
+    highestFromRight[N - 1] = blocks[N - 1];
+    for (int i = N - 2; i >= 0; i--) {
+        highestFromRight[i] = max(blocks[i], highestFromRight[i + 1]);
+    }
+    
     int ans = 0;
-    vector<int> ss;
-    for(ptr; ptr<N; ptr++){
-        while(!ss.empty() && atlantis[ptr] > ss.back()){
-            if (atlantis[ptr] > ss.back()){
-                ss.pop_back();
-                ans+=(ptr - atlantis[-1] - 1);
-                ss.pop_back();
-            ss.push_back(ptr);
-            ss.push_back(atlantis[ptr]);
+    for (int i = 1; i < N - 1; i++) {
+        int waterHeight = min(highestFromLeft[i], highestFromRight[i]) - blocks[i];
+        if (waterHeight > 0) {
+            ans++;
         }
     }
-
-    output<<ans;
+    
+    output << ans;
 }
-
-rgfghj cfyfyfy
